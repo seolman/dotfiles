@@ -3,9 +3,11 @@
 # "ui.background" = { bg = "bg" }
 "ui.cursor" = { fg = "tx", bg = "tx-3" }
 "ui.cursor.primary" = { fg = "bg", bg = "tx" }
+# "ui.cursor.match" = { fg = "bl", modifiers = ["bold"] }
 "ui.cursor.match" = { modifiers = ["bold"] }
 "ui.linenr" = "tx-3"
-"ui.linenr.selected" = "tx"
+# "ui.linenr.selected" = "tx"
+"ui.linenr.selected" = "bl"
 "ui.selection" = { bg = "ui-2" }
 # "ui.statusline" = { fg = "tx", bg = "bg-2" }
 "ui.statusline" = { fg = "tx" }
@@ -13,7 +15,7 @@
 "ui.statusline.insert" = { fg = "bg", bg = "or" }
 "ui.statusline.select" = { fg = "bg", bg = "ma" }
 "ui.cursorline" = { bg = "bg-2" }
-# "ui.popup" = { fg = "tx", bg = "bg" }
+# "ui.popup" = { fg = "tx", bg = "bg" } // help and leader
 "ui.popup" = { fg = "tx" }
 "ui.window" = "tx"
 # "ui.help" = { fg = "tx", bg = "bg" }
@@ -27,9 +29,10 @@
 # "ui.virtual.inlay-hint" = { fg = "tx-3", bg = "bg" }
 "ui.virtual.inlay-hint" = { fg = "tx-3" }
 "ui.virtual.jump-label" = { bg = "bg-2", modifiers = ["bold"]}
-# "ui.menu" = { fg = "tx", bg = "bg" }
+# "ui.menu" = { fg = "tx", bg = "bg" } // completion
 "ui.menu" = { fg = "tx" }
-"ui.menu.selected" = { bg = "ui", fg = "tx" }
+# "ui.menu.selected" = { bg = "ui", fg = "tx" }
+"ui.menu.selected" = { bg = "ui", fg = "bl" }
 # "ui.debug" = { fg = "or", bg = "bg" }
 "ui.debug" = { fg = "or" }
 "ui.highlight.frameline" = { bg = "ye" }
@@ -106,3 +109,4 @@ bl = "#205EA6"
 pu = "#5E409D"
 ma = "#A02F6F"
 
+-- TODO: picker match color
