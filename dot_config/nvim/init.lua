@@ -37,11 +37,25 @@ require("lazy").setup({
   },
 })
 
-local function clear_bg(name)
-  vim.print(vim.api.nvim_get_hl(0, { name = name }))
-  vim.api.nvim_set_hl(0, name, { bg = "" })
-  vim.print(vim.api.nvim_get_hl(0, { name = name }))
-end
+-- local function clear_bg(name)
+--   vim.print(vim.api.nvim_get_hl(0, { name = name }))
+--   vim.api.nvim_set_hl(0, name, { bg = "NONE" })
+--   vim.print(vim.api.nvim_get_hl(0, { name = name }))
+-- end
+--
+-- clear_bg("Normal")
+--
+-- vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+-- vim.api.nvim_set_hl(0, "FloatBorder", { link = "NormalFloat" })
 
-clear_bg("Normal")
-clear_bg("NormalFloat")
+local hi_opts = {
+  Normal = { bg = "NONE" },
+  NormalFloat = { link = "Normal" },
+  FloatBorder = { link = "NormalFloat" },
+}
+
+for k, v in pairs(hi_opts) do
+  local prev_opt = vim.api.nvim_get_hl(0, { name = k })
+  local current_opt = vim.tbl_extend("force", prev_opt, v)
+  vim.api.nvim_set_hl(0, k, current_opt)
+end
