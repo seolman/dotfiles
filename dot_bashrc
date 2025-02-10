@@ -7,7 +7,9 @@
 
 export EDITOR="helix"
 
-# eval -- "$(starship init bash --print-full-init)"
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+
+eval "$(starship init bash)"
 # eval "$(fzf --bash)"
 # eval "$(zoxide init bash)"
 
