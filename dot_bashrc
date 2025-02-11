@@ -10,8 +10,8 @@ export EDITOR="helix"
 export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 eval "$(starship init bash)"
-# eval "$(fzf --bash)"
-# eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
+eval "$(zoxide init bash)"
 
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
