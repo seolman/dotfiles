@@ -18,4 +18,5 @@ paru -S firefox chromium zen-browser-bin \
   rofi \
   zathura zathura-pdf-mupdf \
   vesktop-bin \
-  fcitx5-im fcitx5-hangul noto-fonts-cjk ttf-d2coding-nerd
+  fcitx5-im fcitx5-hangul noto-fonts-cjk ttf-d2coding-nerd \
+  qt6ct lxappearance-gtk3
