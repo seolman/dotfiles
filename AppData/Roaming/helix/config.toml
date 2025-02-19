@@ -5,6 +5,7 @@ line-number = "relative"
 continue-comments = false
 completion-timeout = 5
 completion-trigger-len = 1
+shell = ["powershell", "-C"]
 true-color = true
 color-modes = true
 popup-border = "all"
