@@ -3,15 +3,15 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [manager]
-ratio          = [ 1, 1, 1 ]
+ratio          = [ 1, 4, 4 ]
 sort_by        = "alphabetical"
 sort_sensitive = false
 sort_reverse 	 = false
 sort_dir_first = true
 sort_translit  = false
-linemode       = "none"
-show_hidden    = false
-show_symlink   = true
+linemode       = "mtime"
+show_hidden    = true
+show_symlink   = false
 scrolloff      = 5
 mouse_events   = [ "click", "scroll" ]
 title_format   = "Yazi: {cwd}"
