@@ -1,8 +1,0 @@
-export QT_QPA_PLATFORMTHEME=qt6ct
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-
-xrandr --output "Virtual-1" --mode 1920x1080
-
-exec dwm

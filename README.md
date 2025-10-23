@@ -1,5 +1,1 @@
-# Dotfiles
-
-```bash
-chezmoi init --apply seolman
-```
+# Nix Can Do Anything
