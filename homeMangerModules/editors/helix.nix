@@ -81,8 +81,7 @@
       };
       extraConfig = "";
       extraPackages = with pkgs; [
-        # nixd
-        nil
+        nixd
         nixfmt-tree
         clang-tools
         typescript-language-server

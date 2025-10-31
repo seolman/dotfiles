@@ -10,11 +10,17 @@
     run ln -sfn "/mnt/c/Users/Seolman/Downloads" "$HOME/Downloads"
   '';
 
+  home.sessionVariables = {
+    GOPATH = "${config.home.homeDirectory}/.go";
+  };
+
   home.packages = with pkgs; [
     gcc
     nodejs_latest
     temurin-bin
     gradle
+    go
+    typst
 
     gemini-cli
     github-cli
