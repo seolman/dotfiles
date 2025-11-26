@@ -47,6 +47,7 @@
             inputs.stylix.nixosModules.stylix
             ./nixosModules
             ./hosts/nixos-wsl
+            # { programs.nix-ld.enable = true; }
           ];
         };
         # TODO NixOS Laptop

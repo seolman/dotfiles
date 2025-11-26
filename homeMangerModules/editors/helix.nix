@@ -77,13 +77,17 @@
             name = "nix";
             auto-format = true;
           }
+          {
+            name = "cpp";
+            auto-format = true;
+          }
         ];
       };
       extraConfig = "";
       extraPackages = with pkgs; [
         nixd
         nixfmt-tree
-        clang-tools
+        libclang
         typescript-language-server
         vscode-langservers-extracted
         emmet-language-server
@@ -103,6 +107,7 @@
         jdt-language-server
         kotlin-language-server
         ruff
+        neocmakelsp
 
         prettier
 

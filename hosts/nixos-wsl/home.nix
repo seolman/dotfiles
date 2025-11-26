@@ -21,6 +21,8 @@
     gradle
     go
     typst
+    gnumake
+    cmake
 
     gemini-cli
     github-cli
