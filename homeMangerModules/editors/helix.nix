@@ -74,6 +74,11 @@
             language-servers = [ "typescript-language-server" ];
           }
           {
+            name = "typescript";
+            auto-format = true;
+            language-servers = [ "typescript-language-server" ];
+          }
+          {
             name = "nix";
             auto-format = true;
           }

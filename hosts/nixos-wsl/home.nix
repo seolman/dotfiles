@@ -29,6 +29,7 @@
     lazygit
 
     jq
+    docker
   ];
 
   programs.direnv = {
@@ -258,7 +259,7 @@
                 _children = [
                   {
                     pane = {
-                      command = "hx";
+                      command = "bash";
                     };
                   }
                 ];
@@ -272,7 +273,7 @@
                 _children = [
                   {
                     pane = {
-                      command = "gemini";
+                      command = "bash";
                     };
                   }
                 ];
