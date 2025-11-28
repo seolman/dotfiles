@@ -32,6 +32,8 @@
     docker
   ];
 
+  services.ssh-agent.enable = true;
+
   programs.direnv = {
     enable = true;
     silent = true;
