@@ -113,6 +113,7 @@
         kotlin-language-server
         ruff
         neocmakelsp
+        docker-language-server
 
         prettier
 

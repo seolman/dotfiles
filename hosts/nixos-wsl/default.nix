@@ -40,5 +40,11 @@
     "flakes"
   ];
 
+  services.xserver = {
+    enable = true;
+  };
+
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   system.stateVersion = "25.05";
 }
