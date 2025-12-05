@@ -107,13 +107,13 @@
         tombi
         bash-language-server
         texlab
-        docker-language-server
+        # docker-language-server
+        dockerfile-language-server
         glsl_analyzer
         jdt-language-server
         kotlin-language-server
         ruff
         neocmakelsp
-        docker-language-server
 
         prettier
 
