@@ -21,6 +21,15 @@
     enable = true;
   };
 
+  services.redis.servers."manga-db" = {
+    enable = true;
+    port = 6379;
+  };
+
+  virtualisation.docker = {
+    enable = true;
+  };
+
   environment.systemPackages = [ ];
 
   programs.nix-index = {
@@ -42,6 +51,10 @@
 
   services.xserver = {
     enable = true;
+  };
+
+  environment.sessionVariables = {
+    DISPLAY = ":0";
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;
