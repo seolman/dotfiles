@@ -29,6 +29,7 @@
   virtualisation.docker = {
     enable = true;
   };
+  users.users."seolman".extraGroups = [ "docker" ];
 
   environment.systemPackages = [ ];
 
@@ -58,6 +59,7 @@
   };
 
   nixpkgs.config.allowUnsupportedSystem = true;
+  nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.05";
 }
