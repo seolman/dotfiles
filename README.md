@@ -1,1 +1,2 @@
-# Nix Can Do Anything
+# Dotfiles
+
