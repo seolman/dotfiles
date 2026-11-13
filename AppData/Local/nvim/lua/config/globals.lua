@@ -31,13 +31,13 @@ g.maplocalleader = " "
 -- g.netrw_altfile = 0
 
 -- 'g:netrw_alto' - 0: use 'splitbelow', 1: invert splitting direction for 'o'
--- g.netrw_alto = 0
+g.netrw_alto = 0
 
 -- 'g:netrw_altv' - 0: use 'splitright', 1: invert splitting direction for 'v'
--- g.netrw_altv = 0
+g.netrw_altv = 0
 
 -- 'g:netrw_banner' - 1: show top help banner, 0: hide banner (press 'I' to toggle)
--- g.netrw_banner = 1
+g.netrw_banner = 0
 
 -- 'g:netrw_browse_split' - how <CR> opens files:
 --   0: reuse the same window
@@ -127,7 +127,7 @@ g.maplocalleader = " "
 -- g.netrw_nogx = 0
 
 -- 'g:netrw_preview' - 0: horizontal split for preview ('p'), 1: vertical split for preview
--- g.netrw_preview = 0
+g.netrw_preview = 1
 
 -- 'g:netrw_retmap' - 1: map <2-LeftMouse> to return to netrw listing from file
 -- g.netrw_retmap = 0
@@ -145,7 +145,7 @@ g.maplocalleader = " "
 --   "b": bytes
 --   "h": human-readable (K, M, G) with 1000 base
 --   "H": human-readable (Ki, Mi, Gi) with 1024 base
--- g.netrw_sizestyle = "b"
+g.netrw_sizestyle = "H"
 
 -- 'g:netrw_sort_by' - sort listing by: "name", "time", or "size", "exten" (press 's' to cycle)
 -- g.netrw_sort_by = "name"
