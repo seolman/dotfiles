@@ -1,5 +1,6 @@
 # Ignore repository metadata in target home directory
 README.md
+README.KO.md
 LICENSE.md
 AGENTS.md
 
