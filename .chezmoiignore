@@ -1,7 +1,7 @@
 # Ignore repository metadata in target home directory
 README.md
-LICENSE
 LICENSE.md
+AGENTS.md
 
 {{- if ne .chezmoi.os "windows" }}
 # Ignore Windows-only directories on Linux and macOS
