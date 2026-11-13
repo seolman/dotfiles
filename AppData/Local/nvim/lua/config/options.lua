@@ -128,12 +128,15 @@ local opt = vim.opt
 -- 'cinwords' ('cinw') - words where 'si' and 'cin' add an indent
 -- opt.cinwords = "if,else,while,do,for,switch"
 
+-- TODO
 -- 'clipboard' ('cb') - use the clipboard as the unnamed register
 -- opt.clipboard = ""
 
+-- TODO
 -- 'cmdheight' ('ch') - number of lines to use for the command-line
 -- opt.cmdheight = 1
 
+-- TODO
 -- 'cmdwinheight' ('cwh') - height of the command-line window
 -- opt.cmdwinheight = 7
 
@@ -149,12 +152,14 @@ local opt = vim.opt
 -- 'commentstring' ('cms') - template for comments; used for fold marker
 -- opt.commentstring = ""
 
+-- TODO
 -- 'complete' ('cpt') - specify how Insert mode completion works
 -- opt.complete = { ".", "w", "b", "u", "t" }
 
 -- 'completefunc' ('cfu') - function to be used for Insert mode completion
 -- opt.completefunc = ""
 
+-- TODO
 -- 'completeopt' ('cot') - options for Insert mode completion
 -- opt.completeopt = { "menu", "popup" }
 
@@ -167,6 +172,7 @@ local opt = vim.opt
 -- 'concealcursor' ('cocu') - whether concealable text is hidden in cursor line
 -- opt.concealcursor = ""
 
+-- TODO
 -- 'conceallevel' ('cole') - whether concealable text is shown or hidden
 -- opt.conceallevel = 0
 
@@ -257,6 +263,7 @@ local opt = vim.opt
 -- 'eventignorewin' ('eiw') - autocommand events that are ignored in a window
 -- opt.eventignorewin = ""
 
+-- TODO
 -- 'expandtab' ('et') - use spaces when <Tab> is inserted
 -- opt.expandtab = false
 
@@ -296,6 +303,7 @@ local opt = vim.opt
 -- 'foldcolumn' ('fdc') - width of the column used to indicate folds
 -- opt.foldcolumn = "0"
 
+-- TODO
 -- 'foldenable' ('fen') - set to display all folds open
 -- opt.foldenable = true
 
@@ -329,6 +337,7 @@ local opt = vim.opt
 -- 'foldtext' ('fdt') - expression used to display for a closed fold
 -- opt.foldtext = "foldtext()"
 
+-- TODO
 -- 'follow' - multicursor: motions cascade to all cursors
 -- opt.follow = false
 
@@ -386,6 +395,7 @@ local opt = vim.opt
 -- 'history' ('hi') - number of command-lines that are remembered
 -- opt.history = 10000
 
+-- TODO
 -- 'hlsearch' ('hls') - highlight matches with last search pattern
 -- opt.hlsearch = true
 
@@ -395,6 +405,7 @@ local opt = vim.opt
 -- 'iconstring' - string to use for the Vim icon text
 -- opt.iconstring = ""
 
+-- TODO
 -- 'ignorecase' ('ic') - ignore case in search patterns
 -- opt.ignorecase = false
 
@@ -416,6 +427,7 @@ local opt = vim.opt
 -- 'includeexpr' ('inex') - expression used to process an include line
 -- opt.includeexpr = ""
 
+-- TODO
 -- 'incsearch' ('is') - highlight match while typing search pattern
 -- opt.incsearch = true
 
@@ -548,6 +560,7 @@ local opt = vim.opt
 -- 'more' - pause listings when the whole screen is filled
 -- opt.more = true
 
+-- TODO
 -- 'mouse' - enable the use of mouse clicks
 -- opt.mouse = "nvi"
 
@@ -576,11 +589,12 @@ local opt = vim.opt
 -- opt.nrformats = { "bin", "hex" }
 
 -- 'number' ('nu') - print the line number in front of each line
--- opt.number = false
+opt.number = true
 
 -- 'numberwidth' ('nuw') - number of columns used for the line number
 -- opt.numberwidth = 4
 
+-- TODO
 -- 'omnifunc' ('ofu') - function for filetype-specific completion
 -- opt.omnifunc = ""
 
@@ -612,9 +626,11 @@ local opt = vim.opt
 -- 'previewheight' ('pvh') - height of the preview window
 -- opt.previewheight = 12
 
+-- TODO
 -- 'previewwindow' ('pvw') - identifies the preview window
 -- opt.previewwindow = false
 
+-- TODO
 -- 'pumheight' ('ph') - maximum number of items to show in the popup menu
 -- opt.pumheight = 0
 
@@ -636,6 +652,7 @@ local opt = vim.opt
 -- 'regexpengine' ('re') - default regexp engine to use
 -- opt.regexpengine = 0
 
+-- TODO
 -- 'relativenumber' ('rnu') - show relative line number in front of each line
 -- opt.relativenumber = false
 
@@ -670,6 +687,7 @@ local opt = vim.opt
 -- 'scrolljump' ('sj') - minimum number of lines to scroll
 -- opt.scrolljump = 1
 
+-- TODO
 -- 'scrolloff' ('so') - minimum nr. of lines above and below cursor
 -- opt.scrolloff = 0
 
@@ -727,6 +745,7 @@ local opt = vim.opt
 -- 'shiftround' ('sr') - round indent to multiple of shiftwidth
 -- opt.shiftround = false
 
+-- TODO
 -- 'shiftwidth' ('sw') - number of spaces to use for (auto)indent step
 -- opt.shiftwidth = 8
 
@@ -760,21 +779,26 @@ local opt = vim.opt
 -- 'sidescrolloff' ('siso') - min. nr. of columns to left and right of cursor
 -- opt.sidescrolloff = 0
 
+-- TODO
 -- 'signcolumn' ('scl') - when and how to display the sign column
--- opt.signcolumn = "auto"
+opt.signcolumn = "yes"
 
+-- TODO
 -- 'smartcase' ('scs') - no ignore case when pattern has uppercase
 -- opt.smartcase = false
 
+-- TODO
 -- 'smartindent' ('si') - smart autoindenting for C programs
 -- opt.smartindent = false
 
+-- TODO
 -- 'smarttab' ('sta') - <Tab> in leading whitespace indents by 'shiftwidth'
 -- opt.smarttab = true
 
 -- 'smoothscroll' ('sms') - scroll by screen lines when 'wrap' is set
 -- opt.smoothscroll = false
 
+-- TODO
 -- 'softtabstop' ('sts') - number of columns between two soft tab stops
 -- opt.softtabstop = 0
 
@@ -796,14 +820,16 @@ local opt = vim.opt
 -- 'spellsuggest' ('sps') - method(s) used to suggest spelling corrections
 -- opt.spellsuggest = { "best" }
 
+-- TODO
 -- 'splitbelow' ('sb') - new window from split is below the current one
--- opt.splitbelow = false
+opt.splitbelow = true
 
 -- 'splitkeep' ('spk') - determines scroll behavior for split windows
 -- opt.splitkeep = "cursor"
 
+-- TODO
 -- 'splitright' ('spr') - new window is put right of the current one
--- opt.splitright = false
+opt.splitright = true
 
 -- 'startofline' ('sol') - commands move cursor to first non-blank in line
 -- opt.startofline = false
@@ -821,7 +847,7 @@ local opt = vim.opt
 -- opt.suffixesadd = ""
 
 -- 'swapfile' ('swf') - whether to use a swapfile for a buffer
--- opt.swapfile = true
+opt.swapfile = false
 
 -- 'switchbuf' ('swb') - sets behavior when switching to another buffer
 -- opt.switchbuf = { "uselast" }
@@ -841,6 +867,7 @@ local opt = vim.opt
 -- 'tabpagemax' ('tpm') - maximum number of tabpages for |-p| and "tab all"
 -- opt.tabpagemax = 50
 
+-- TODO
 -- 'tabstop' ('ts') - number of columns between two tab stops
 -- opt.tabstop = 8
 
@@ -916,8 +943,9 @@ local opt = vim.opt
 -- 'undodir' ('udir') - where to store undo files
 -- opt.undodir = { vim.fn.stdpath("state") .. "/undo//" }
 
+-- TODO
 -- 'undofile' ('udf') - save undo information in a file
--- opt.undofile = false
+opt.undofile = true
 
 -- 'undolevels' ('ul') - maximum number of changes that can be undone
 -- opt.undolevels = 1000
@@ -973,6 +1001,7 @@ local opt = vim.opt
 -- 'wildignorecase' ('wic') - ignore case when completing file names
 -- opt.wildignorecase = false
 
+-- TODO
 -- 'wildmenu' ('wmnu') - use menu for command line completion
 -- opt.wildmenu = true
 
@@ -1012,8 +1041,9 @@ local opt = vim.opt
 -- 'winwidth' ('wiw') - minimal number of columns for current window
 -- opt.winwidth = 20
 
+-- TODO
 -- 'wrap' - long lines wrap and continue on the next line
--- opt.wrap = true
+opt.wrap = false
 
 -- 'wrapmargin' ('wm') - chars from the right where wrapping starts
 -- opt.wrapmargin = 0
