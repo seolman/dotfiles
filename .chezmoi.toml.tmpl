@@ -1,0 +1,12 @@
+# Chezmoi Configuration Template
+# Evaluates during `chezmoi init` across Windows, Linux, and macOS.
+
+[data]
+    os = {{ .chezmoi.os | quote }}
+    arch = {{ .chezmoi.arch | quote }}
+
+{{- if eq .chezmoi.os "windows" }}
+[cd]
+    command = "pwsh"
+    args = ["-NoLogo"]
+{{- end }}

@@ -1,0 +1,9 @@
+# Ignore repository metadata in target home directory
+README.md
+LICENSE
+
+{{- if ne .chezmoi.os "windows" }}
+# Ignore Windows-only directories on Linux and macOS
+AppData/**
+{{- end }}
+

@@ -1,0 +1,2 @@
+-- Base configuration module
+-- Add options, keymaps, and autocmds in this directory

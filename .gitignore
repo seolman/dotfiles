@@ -1,0 +1,9 @@
+# Editors & OS files
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+
+# Local / temporary files
+.local/
