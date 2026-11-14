@@ -23,13 +23,46 @@
 │               ├── config/
 │               │   ├── init.lua
 │               │   ├── globals.lua
-│               │   └── options.lua
+│               │   ├── options.lua
+│               │   └── lsp.lua
 │               └── plugins/
 │                   └── init.lua
 └── dot_config/
     └── tmux/
         └── tmux.conf           # Linux tmux 설정 (~/.config/tmux/tmux.conf)
 ```
+
+---
+
+## Neovim (Windows — 순정 `vim.pack` & Native LSP)
+
+**Neovim 0.13**의 내장 패키지 매니저(`vim.pack`)로 [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)만 설치하고, 순정 `vim.lsp.config` / `vim.lsp.enable` API로 구성했습니다.
+
+- **기본 활성화된 언어 서버** (`PATH`에 실행 파일이 있으면 자동 연결): `lua_ls`, `ts_ls`, `pyright`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`
+- **`LspAttach` 시 활성화되는 네이티브 기능**:
+  - 네이티브 자동 완성: `vim.lsp.completion.enable(..., { autotrigger = true })` (`<C-n>` / `<C-p>` 이동, `<C-y>` 선택 확정)
+  - 네이티브 Inlay Hints: `vim.lsp.inlay_hint.enable(true)` (`grh`로 현재 버퍼 토글)
+- **패키지 관리 명령어 (`vim.pack`)**:
+  - `:packupdate` — 플러그인 업데이트 확인 및 리뷰 (`:write`로 적용 확정, `:quit`으로 취소)
+  - `:packupdate ++offline` — 설치된 플러그인 목록/버전 오프라인 조회
+  - `:packdel <name>` / `:packdel ++all` — 비활성 플러그인 삭제
+
+| 단축키 | 모드 | 동작 |
+| :--- | :--- | :--- |
+| `grn` | Normal | 심볼 이름 변경 (`vim.lsp.buf.rename()`) |
+| `gra` | Normal / Visual | 코드 액션 실행 (`vim.lsp.buf.code_action()`) |
+| `grr` | Normal | 참조 목록 찾기 (`vim.lsp.buf.references()`) |
+| `gri` | Normal | 구현부로 이동 (`vim.lsp.buf.implementation()`) |
+| `grt` | Normal | 타입 정의로 이동 (`vim.lsp.buf.type_definition()`) |
+| `grx` | Normal | CodeLens 실행 (`vim.lsp.codelens.run()`) |
+| `grh` | Normal | Inlay Hints 표시 토글 (`vim.lsp.inlay_hint`) |
+| `gO` | Normal | 문서 심볼 목차 보기 (`vim.lsp.buf.document_symbol()`) |
+| `K` | Normal | 커서 아래 문서(Hover) 보기 (`vim.lsp.buf.hover()`) |
+| `<C-]>` / `<C-w>]` | Normal | 정의로 이동 / 창 분할 후 정의로 이동 (`tagfunc`) |
+| `<C-s>` | Insert / Select | 함수 시그니처 도움말 (`vim.lsp.buf.signature_help()`) |
+| `gq` | Normal / Visual | 코드 포맷팅 (`formatexpr`) |
+| `]d` / `[d` | Normal | 다음 / 이전 진단(Diagnostic)으로 이동 |
+| `<C-w>d` | Normal | 현재 줄 진단 메시지 플로팅 창 보기 |
 
 ---
 

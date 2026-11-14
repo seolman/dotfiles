@@ -47,9 +47,12 @@ tmux -L test -f dot_config/tmux/tmux.conf new-session -d \; kill-server
 - **Load order** (`lua/config/init.lua`):
   1. `config.globals` **must** load first so `vim.g.mapleader` and `vim.g.maplocalleader` are set before any keymaps or plugins.
   2. `config.options` loads next.
+  3. `plugins` loads next via native `vim.pack.add()`.
+  4. `config.lsp` loads after `plugins` so `nvim-lspconfig`'s `lsp/*.lua` definitions are on the runtimepath before `vim.lsp.config()` / `vim.lsp.enable()`.
 - **`lua/config/globals.lua`**: Uses `vim.g` (`local g = vim.g`) for leader keys and `netrw` variables (`g:netrw_*`, `g:loaded_netrw*`). Keep commented-out `netrw` reference entries intact; uncomment and edit in place.
 - **`lua/config/options.lua`**: Uses `vim.opt` (`local opt = vim.opt`) and lists all `:h option-list` (`quickref.txt`) options in **alphabetical order** with Windows defaults commented out. Do not remove or reorder commented-out reference entries; uncomment and edit in place.
-- **`lua/plugins/`**: Reserved for plugin specifications (e.g., `lazy.nvim`).
+- **`lua/plugins/init.lua`**: Uses Neovim 0.12+ native package manager `vim.pack.add()` (no external plugin manager).
+- **`lua/config/lsp.lua`**: Uses native `vim.lsp.config()` and `vim.lsp.enable()` (do not use legacy `require("lspconfig").<server>.setup()`), native completion (`vim.lsp.completion.enable`), native inlay hints (`vim.lsp.inlay_hint.enable`), and Neovim built-in LSP keymaps (`grn`, `gra`, `grr`, `gri`, `grt`, `grx`, `gO`, `K`, `<C-]>`, `<C-s>`, `]d`/`[d`).
 
 ### Documentation & Language
 - **English-only codebase**: Write all code, comments, configuration files, and commit messages in **English only** (`README.KO.md` is the sole exception).

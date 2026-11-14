@@ -23,13 +23,46 @@ Cross-platform dotfiles managed with **chezmoi**, prioritizing **Windows** first
 │               ├── config/
 │               │   ├── init.lua
 │               │   ├── globals.lua
-│               │   └── options.lua
+│               │   ├── options.lua
+│               │   └── lsp.lua
 │               └── plugins/
 │                   └── init.lua
 └── dot_config/
     └── tmux/
         └── tmux.conf           # Linux tmux config (~/.config/tmux/tmux.conf)
 ```
+
+---
+
+## Neovim (Windows — Native `vim.pack` & LSP)
+
+Configured for **Neovim 0.13** using the built-in package manager (`vim.pack`) with [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig) and native `vim.lsp.config` / `vim.lsp.enable` APIs.
+
+- **Enabled language servers** (attached automatically when installed on `PATH`): `lua_ls`, `ts_ls`, `pyright`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`
+- **Native features enabled on `LspAttach`**:
+  - Auto-completion via `vim.lsp.completion.enable(..., { autotrigger = true })` (`<C-n>` / `<C-p>` to navigate, `<C-y>` to confirm)
+  - Inlay hints via `vim.lsp.inlay_hint.enable(true)` (`grh` to toggle per buffer)
+- **Package management commands (`vim.pack`)**:
+  - `:packupdate` — Download and review plugin updates (`:write` to confirm, `:quit` to abort)
+  - `:packupdate ++offline` — Inspect installed plugins offline
+  - `:packdel <name>` / `:packdel ++all` — Remove inactive plugins
+
+| Keybinding | Mode | Action |
+| :--- | :--- | :--- |
+| `grn` | Normal | Rename symbol (`vim.lsp.buf.rename()`) |
+| `gra` | Normal / Visual | Code action (`vim.lsp.buf.code_action()`) |
+| `grr` | Normal | Find references (`vim.lsp.buf.references()`) |
+| `gri` | Normal | Go to implementation (`vim.lsp.buf.implementation()`) |
+| `grt` | Normal | Go to type definition (`vim.lsp.buf.type_definition()`) |
+| `grx` | Normal | Run CodeLens (`vim.lsp.codelens.run()`) |
+| `grh` | Normal | Toggle Inlay Hints (`vim.lsp.inlay_hint`) |
+| `gO` | Normal | Document symbols (`vim.lsp.buf.document_symbol()`) |
+| `K` | Normal | Hover documentation (`vim.lsp.buf.hover()`) |
+| `<C-]>` / `<C-w>]` | Normal | Go to definition / Split & go to definition (`tagfunc`) |
+| `<C-s>` | Insert / Select | Signature help (`vim.lsp.buf.signature_help()`) |
+| `gq` | Normal / Visual | Format selection/lines (`formatexpr`) |
+| `]d` / `[d` | Normal | Next / Previous diagnostic |
+| `<C-w>d` | Normal | Show diagnostic float under cursor |
 
 ---
 
