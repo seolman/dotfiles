@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "nvim-lspconfig": {
+      "rev": "05588aab66016c6836634b87ca2d392d097515f2",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    }
+  }
+}
