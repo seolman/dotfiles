@@ -9,3 +9,8 @@ AGENTS.md
 AppData/**
 {{- end }}
 
+{{- if ne .chezmoi.os "linux" }}
+# Ignore Linux-only configurations on Windows and macOS
+.config/tmux
+.config/tmux/**
+{{- end }}

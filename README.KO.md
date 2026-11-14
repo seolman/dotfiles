@@ -15,18 +15,40 @@
 ├── LICENSE.md                  # MIT 라이선스
 ├── README.md                   # 영문 문서
 ├── README.KO.md                # 한국어 문서
-└── AppData/
-    └── Local/
-        └── nvim/               # Windows Neovim 설정 (%LOCALAPPDATA%\nvim)
-            ├── init.lua
-            └── lua/
-                ├── config/
-                │   ├── init.lua
-                │   ├── globals.lua
-                │   └── options.lua
-                └── plugins/
-                    └── init.lua
+├── AppData/
+│   └── Local/
+│       └── nvim/               # Windows Neovim 설정 (%LOCALAPPDATA%\nvim)
+│           ├── init.lua
+│           └── lua/
+│               ├── config/
+│               │   ├── init.lua
+│               │   ├── globals.lua
+│               │   └── options.lua
+│               └── plugins/
+│                   └── init.lua
+└── dot_config/
+    └── tmux/
+        └── tmux.conf           # Linux tmux 설정 (~/.config/tmux/tmux.conf)
 ```
+
+---
+
+## tmux (Linux)
+
+외부 플러그인 없이 순정 기능만으로 구성한 Vim 모션 중심 tmux 설정입니다 (`~/.config/tmux/tmux.conf`). TrueColor/Neovim 연동과 배경이 투명한 상단 상태바를 포함합니다.
+
+> **참고**: 기존 `~/.tmux.conf`가 있다면 삭제해야 tmux가 `~/.config/tmux/tmux.conf`를 자동으로 불러옵니다. OSC 52를 지원하지 않는 로컬 터미널에서도 클립보드를 연동하려면 `wl-clipboard`(Wayland) 또는 `xclip`/`xsel`(X11)을 설치하세요.
+
+| 단축키 | 동작 |
+| :--- | :--- |
+| `Ctrl-g` | Prefix 키 (`Ctrl-g Ctrl-g`로 실제 `Ctrl-g` 전달) |
+| `Prefix` + `v` / `s` | 세로 분할(좌/우) / 가로 분할(상/하) |
+| `Prefix` + `h` / `j` / `k` / `l` | Vim 모션으로 패널 이동 |
+| `Prefix` + `H` / `J` / `K` / `L` | 패널 크기 조절 (5칸 단위, 연속 입력 가능) |
+| `Prefix` + `c` / `Tab` / `S` | 현재 경로로 새 창 / 이전 창 전환 / 세션 트리 |
+| `Prefix` + `M-h` / `M-l` | 창 위치 좌/우 이동 |
+| `Prefix` + `[` 또는 `Esc` | Vi 복사 모드 진입 (`v` 문자, `V` 줄, `C-v` 블록, `y` 복사) |
+| `Prefix` + `r` | `~/.config/tmux/tmux.conf` 설정 다시 불러오기 |
 
 ---
 

@@ -13,7 +13,7 @@ The repository root is the chezmoi source directory (no `.chezmoiroot`).
 - `.chezmoiignore` — Excludes repo-only files and OS-specific paths from target deployment
 - `.gitattributes` — Enforces `LF` by default and `CRLF` for `.bat`, `.cmd`, `.ps1`
 - `AppData/Local/nvim/` — Windows Neovim config (`%LOCALAPPDATA%\nvim`)
-- `.config/` — Cross-platform XDG configs (shared across Windows, Linux, macOS)
+- `dot_config/` — Cross-platform XDG configs deploying to `~/.config/` (shared across Windows, Linux, macOS)
 
 ## Commands
 
@@ -30,6 +30,9 @@ chezmoi apply
 
 # Verify Neovim Lua syntax (when nvim is available)
 nvim --headless "+lua require('config')" +qa
+
+# Verify tmux configuration in an isolated server (when tmux is available)
+tmux -L test -f dot_config/tmux/tmux.conf new-session -d \; kill-server
 ```
 
 ## Conventions

@@ -15,18 +15,40 @@ Cross-platform dotfiles managed with **chezmoi**, prioritizing **Windows** first
 ├── LICENSE.md                  # MIT License
 ├── README.md                   # Documentation (English)
 ├── README.KO.md                # Documentation (Korean)
-└── AppData/
-    └── Local/
-        └── nvim/               # Windows Neovim config (%LOCALAPPDATA%\nvim)
-            ├── init.lua
-            └── lua/
-                ├── config/
-                │   ├── init.lua
-                │   ├── globals.lua
-                │   └── options.lua
-                └── plugins/
-                    └── init.lua
+├── AppData/
+│   └── Local/
+│       └── nvim/               # Windows Neovim config (%LOCALAPPDATA%\nvim)
+│           ├── init.lua
+│           └── lua/
+│               ├── config/
+│               │   ├── init.lua
+│               │   ├── globals.lua
+│               │   └── options.lua
+│               └── plugins/
+│                   └── init.lua
+└── dot_config/
+    └── tmux/
+        └── tmux.conf           # Linux tmux config (~/.config/tmux/tmux.conf)
 ```
+
+---
+
+## tmux (Linux)
+
+Pure built-in tmux configuration with Vim motions, zero external plugins, TrueColor/Neovim support, and a transparent top status bar (`~/.config/tmux/tmux.conf`).
+
+> **Note**: Remove `~/.tmux.conf` if it exists so tmux loads `~/.config/tmux/tmux.conf` automatically. For local clipboard integration outside OSC 52 terminals, install `wl-clipboard` (Wayland) or `xclip`/`xsel` (X11).
+
+| Keybinding | Action |
+| :--- | :--- |
+| `Ctrl-g` | Prefix key (`Ctrl-g Ctrl-g` sends literal `Ctrl-g`) |
+| `Prefix` + `v` / `s` | Vertical split (side-by-side) / Horizontal split (top/bottom) |
+| `Prefix` + `h` / `j` / `k` / `l` | Move focus between panes |
+| `Prefix` + `H` / `J` / `K` / `L` | Resize pane by 5 cells (repeatable) |
+| `Prefix` + `c` / `Tab` / `S` | New window (current path) / Last window / Session tree |
+| `Prefix` + `M-h` / `M-l` | Swap window left / right |
+| `Prefix` + `[` or `Esc` | Enter Vi copy mode (`v` char, `V` line, `C-v` block, `y` yank) |
+| `Prefix` + `r` | Reload `~/.config/tmux/tmux.conf` |
 
 ---
 
