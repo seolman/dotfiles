@@ -152,7 +152,6 @@ local opt = vim.opt
 -- 'commentstring' ('cms') - template for comments; used for fold marker
 -- opt.commentstring = ""
 
--- TODO
 -- 'complete' ('cpt') - specify how Insert mode completion works
 -- opt.complete = { ".", "w", "b", "u", "t" }
 
@@ -394,7 +393,6 @@ opt.expandtab = true
 -- 'history' ('hi') - number of command-lines that are remembered
 -- opt.history = 10000
 
--- TODO
 -- 'hlsearch' ('hls') - highlight matches with last search pattern
 -- opt.hlsearch = true
 
@@ -404,9 +402,8 @@ opt.expandtab = true
 -- 'iconstring' - string to use for the Vim icon text
 -- opt.iconstring = ""
 
--- TODO
 -- 'ignorecase' ('ic') - ignore case in search patterns
--- opt.ignorecase = false
+opt.ignorecase = true
 
 -- 'imcmdline' ('imc') - use IM when starting to edit a command line
 -- opt.imcmdline = false
@@ -426,7 +423,6 @@ opt.expandtab = true
 -- 'includeexpr' ('inex') - expression used to process an include line
 -- opt.includeexpr = ""
 
--- TODO
 -- 'incsearch' ('is') - highlight match while typing search pattern
 -- opt.incsearch = true
 
@@ -559,7 +555,6 @@ opt.expandtab = true
 -- 'more' - pause listings when the whole screen is filled
 -- opt.more = true
 
--- TODO
 -- 'mouse' - enable the use of mouse clicks
 -- opt.mouse = "nvi"
 
@@ -651,7 +646,6 @@ opt.number = true
 -- 'regexpengine' ('re') - default regexp engine to use
 -- opt.regexpengine = 0
 
--- TODO
 -- 'relativenumber' ('rnu') - show relative line number in front of each line
 -- opt.relativenumber = false
 
@@ -686,9 +680,8 @@ opt.number = true
 -- 'scrolljump' ('sj') - minimum number of lines to scroll
 -- opt.scrolljump = 1
 
--- TODO
 -- 'scrolloff' ('so') - minimum nr. of lines above and below cursor
--- opt.scrolloff = 0
+opt.scrolloff = 4
 
 -- 'scrolloffpad' ('sop') - vertically center cursor at end of file
 -- opt.scrolloffpad = false
@@ -777,9 +770,8 @@ opt.shiftwidth = 2
 -- 'sidescrolloff' ('siso') - min. nr. of columns to left and right of cursor
 -- opt.sidescrolloff = 0
 
--- TODO
 -- 'signcolumn' ('scl') - when and how to display the sign column
-opt.signcolumn = "yes"
+opt.signcolumn = "yes:1"
 
 -- TODO
 -- 'smartcase' ('scs') - no ignore case when pattern has uppercase
@@ -816,14 +808,12 @@ opt.softtabstop = 2
 -- 'spellsuggest' ('sps') - method(s) used to suggest spelling corrections
 -- opt.spellsuggest = { "best" }
 
--- TODO
 -- 'splitbelow' ('sb') - new window from split is below the current one
 opt.splitbelow = true
 
 -- 'splitkeep' ('spk') - determines scroll behavior for split windows
 -- opt.splitkeep = "cursor"
 
--- TODO
 -- 'splitright' ('spr') - new window is put right of the current one
 opt.splitright = true
 
@@ -938,7 +928,6 @@ opt.tabstop = 2
 -- 'undodir' ('udir') - where to store undo files
 -- opt.undodir = { vim.fn.stdpath("state") .. "/undo//" }
 
--- TODO
 -- 'undofile' ('udf') - save undo information in a file
 opt.undofile = true
 
@@ -1036,7 +1025,6 @@ opt.undofile = true
 -- 'winwidth' ('wiw') - minimal number of columns for current window
 -- opt.winwidth = 20
 
--- TODO
 -- 'wrap' - long lines wrap and continue on the next line
 opt.wrap = false
 
