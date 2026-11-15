@@ -158,9 +158,8 @@ local opt = vim.opt
 -- 'completefunc' ('cfu') - function to be used for Insert mode completion
 -- opt.completefunc = ""
 
--- TODO
 -- 'completeopt' ('cot') - options for Insert mode completion
--- opt.completeopt = { "menu", "popup" }
+opt.completeopt = { "menuone", "noselect", "popup" }
 
 -- 'completeslash' ('csl') - like 'shellslash' for completion
 -- opt.completeslash = ""

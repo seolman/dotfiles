@@ -132,9 +132,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- Enable native LSP auto-completion (:h vim.lsp.completion)
     -- Use <C-n>/<C-p> to cycle items and <C-y> to confirm selection.
-    -- if client:supports_method("textDocument/completion") then
-    --   vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    -- end
+    if client:supports_method("textDocument/completion") then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
+    end
 
     -- Enable native Inlay Hints if supported by the server (:h vim.lsp.inlay_hint)
     if client:supports_method("textDocument/inlayHint") then
