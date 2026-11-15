@@ -132,9 +132,8 @@ local opt = vim.opt
 -- 'clipboard' ('cb') - use the clipboard as the unnamed register
 -- opt.clipboard = ""
 
--- TODO
 -- 'cmdheight' ('ch') - number of lines to use for the command-line
--- opt.cmdheight = 1
+opt.cmdheight = 0
 
 -- TODO
 -- 'cmdwinheight' ('cwh') - height of the command-line window
