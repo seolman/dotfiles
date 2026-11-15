@@ -59,6 +59,8 @@ Configured for **Neovim 0.13** using the built-in package manager (`vim.pack`) w
 | `grx` | Normal | Run CodeLens (`vim.lsp.codelens.run()`) |
 | `grh` | Normal | Toggle Inlay Hints (`vim.lsp.inlay_hint`) |
 | `gO` | Normal | Document symbols (`vim.lsp.buf.document_symbol()`) |
+| `gd` | Normal | Go to definition (`vim.lsp.buf.definition()`) |
+| `gD` | Normal | Go to declaration (`vim.lsp.buf.declaration()`) |
 | `K` | Normal | Hover documentation (`vim.lsp.buf.hover()`) |
 | `<C-]>` / `<C-w>]` | Normal | Go to definition / Split & go to definition (`tagfunc`) |
 | `<C-s>` | Insert / Select | Signature help (`vim.lsp.buf.signature_help()`) |

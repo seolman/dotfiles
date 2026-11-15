@@ -59,6 +59,8 @@
 | `grx` | Normal | CodeLens 실행 (`vim.lsp.codelens.run()`) |
 | `grh` | Normal | Inlay Hints 표시 토글 (`vim.lsp.inlay_hint`) |
 | `gO` | Normal | 문서 심볼 목차 보기 (`vim.lsp.buf.document_symbol()`) |
+| `gd` | Normal | 정의로 이동 (`vim.lsp.buf.definition()`) |
+| `gD` | Normal | 선언으로 이동 (`vim.lsp.buf.declaration()`) |
 | `K` | Normal | 커서 아래 문서(Hover) 보기 (`vim.lsp.buf.hover()`) |
 | `<C-]>` / `<C-w>]` | Normal | 정의로 이동 / 창 분할 후 정의로 이동 (`tagfunc`) |
 | `<C-s>` | Insert / Select | 함수 시그니처 도움말 (`vim.lsp.buf.signature_help()`) |

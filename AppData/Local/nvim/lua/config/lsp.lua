@@ -122,6 +122,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
 
+    -- Go to definition / declaration (Neovim only maps <C-]> via tagfunc by default)
+    if client:supports_method("textDocument/definition") then
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = ev.buf, desc = "LSP: Go to definition" })
+    end
+    if client:supports_method("textDocument/declaration") then
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = ev.buf, desc = "LSP: Go to declaration" })
+    end
+
     -- Enable native LSP auto-completion (:h vim.lsp.completion)
     -- Use <C-n>/<C-p> to cycle items and <C-y> to confirm selection.
     if client:supports_method("textDocument/completion") then
