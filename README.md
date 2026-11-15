@@ -40,7 +40,7 @@ Cross-platform dotfiles managed with **chezmoi**, prioritizing **Windows** first
 Configured for **Neovim 0.13** using the built-in package manager (`vim.pack`) with [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig), [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim), and native `vim.lsp.config` / `vim.lsp.enable` APIs.
 
 - **System-first Hybrid Mason (`PATH = "append"`)**: Prefers language servers already installed on the system (e.g., via `rustup`, `winget`, `brew`, `apt`) and automatically installs missing servers via Mason (`:Mason` to inspect).
-- **Enabled language servers**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`
+- **Enabled language servers**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`, `marksman`, `markdown_oxide`
 - **Native features enabled on `LspAttach`**:
   - Auto-completion via `vim.lsp.completion.enable(..., { autotrigger = true })` (`<C-n>` / `<C-p>` to navigate, `<C-y>` to confirm)
   - Inlay hints via `vim.lsp.inlay_hint.enable(true)` (`grh` to toggle per buffer)

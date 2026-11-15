@@ -17,3 +17,7 @@ map("n", "N", "Nzzzv", { desc = "Previous search result and center" })
 map("n", "*", "*zzzv", { desc = "Search word forward and center" })
 map("n", "#", "#zzzv", { desc = "Search word backward and center" })
 map("n", "G", "Gzz", { desc = "Go to last line and center" })
+
+-- Stay in visual mode when indenting
+map("x", "<", "<gv", { desc = "Indent left and keep selection" })
+map("x", ">", ">gv", { desc = "Indent right and keep selection" })

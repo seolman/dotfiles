@@ -58,8 +58,10 @@ local servers = {
   { config = "ts_ls",         bin = "typescript-language-server", mason = "typescript-language-server" },
   { config = "basedpyright",  bin = "basedpyright-langserver",    mason = "basedpyright" },
   { config = "clangd",        bin = "clangd",                     mason = "clangd" },
-  { config = "rust_analyzer", bin = "rust-analyzer",              mason = "rust-analyzer" },
-  { config = "gopls",         bin = "gopls",                      mason = "gopls" },
+  { config = "rust_analyzer",  bin = "rust-analyzer",              mason = "rust-analyzer" },
+  { config = "gopls",          bin = "gopls",                      mason = "gopls" },
+  { config = "marksman",       bin = "marksman",                   mason = "marksman" },
+  { config = "markdown_oxide", bin = "markdown-oxide",             mason = "markdown-oxide" },
 }
 
 -- Auto-install missing servers via Mason only when not present in system PATH

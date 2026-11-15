@@ -40,7 +40,7 @@
 **Neovim 0.13**의 내장 패키지 매니저(`vim.pack`)로 [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)와 [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)을 설치하고, 순정 `vim.lsp.config` / `vim.lsp.enable` API로 구성했습니다.
 
 - **시스템 우선 하이브리드 Mason (`PATH = "append"`)**: 시스템(`rustup`, `winget`, `brew`, `apt` 등)에 이미 설치된 언어 서버가 있으면 시스템 버전을 1순위로 사용하고, 시스템에 없는 서버만 Mason이 자동으로 백그라운드 설치합니다 (`:Mason`으로 상태 확인 가능).
-- **기본 활성화된 언어 서버**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`
+- **기본 활성화된 언어 서버**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`, `marksman`, `markdown_oxide`
 - **`LspAttach` 시 활성화되는 네이티브 기능**:
   - 네이티브 자동 완성: `vim.lsp.completion.enable(..., { autotrigger = true })` (`<C-n>` / `<C-p>` 이동, `<C-y>` 선택 확정)
   - 네이티브 Inlay Hints: `vim.lsp.inlay_hint.enable(true)` (`grh`로 현재 버퍼 토글)
