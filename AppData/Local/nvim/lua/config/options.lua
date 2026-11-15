@@ -467,7 +467,7 @@ opt.ignorecase = true
 -- opt.langremap = false
 
 -- 'laststatus' ('ls') - tells when last window has status lines
--- opt.laststatus = 2
+opt.laststatus = 3
 
 -- 'lazyredraw' ('lz') - don't redraw while executing macros
 -- opt.lazyredraw = false
@@ -739,7 +739,7 @@ opt.shiftround = true
 opt.shiftwidth = 2
 
 -- 'shortmess' ('shm') - list of flags, reduce length of messages
--- opt.shortmess = "ltToOCF"
+opt.shortmess = "ltToOCFsIWc"
 
 -- 'showbreak' ('sbr') - string to use at the start of wrapped lines
 -- opt.showbreak = ""
@@ -748,7 +748,7 @@ opt.shiftwidth = 2
 -- opt.showcmd = true
 
 -- 'showcmdloc' ('sloc') - where to show (partial) command
--- opt.showcmdloc = "last"
+opt.showcmdloc = "statusline"
 
 -- 'showfulltag' ('sft') - show full tag pattern when completing tag
 -- opt.showfulltag = false
@@ -808,7 +808,7 @@ opt.softtabstop = 2
 opt.splitbelow = true
 
 -- 'splitkeep' ('spk') - determines scroll behavior for split windows
--- opt.splitkeep = "cursor"
+opt.splitkeep = "screen"
 
 -- 'splitright' ('spr') - new window is put right of the current one
 opt.splitright = true
