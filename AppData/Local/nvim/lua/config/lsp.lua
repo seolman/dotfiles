@@ -38,17 +38,52 @@
 --   :lsp restart [name]            Restart active LSP client(s)
 --   :lsp stop [name]               Stop active LSP client(s)
 --   :checkhealth vim.lsp           Inspect active LSP clients and configurations
+--   :Mason                         Open Mason package manager UI
 -- ============================================================================
 
 -- ============================================================================
--- 1. Global / Wildcard Server Configuration
+-- 1. Hybrid Mason Setup (System-First + Mason Fallback)
+-- ============================================================================
+-- `PATH = "append"` places Mason's bin directory at the END of PATH.
+-- If a language server is already installed on the system (e.g., via rustup,
+-- winget, scoop, brew, apt), Neovim uses the system binary first; otherwise
+-- it falls back to the Mason-managed binary.
+require("mason").setup({
+  PATH = "append",
+})
+
+-- Server map: { lsp_config_name, executable_name, mason_package_name }
+local servers = {
+  { config = "lua_ls",        bin = "lua-language-server",        mason = "lua-language-server" },
+  { config = "ts_ls",         bin = "typescript-language-server", mason = "typescript-language-server" },
+  { config = "basedpyright",  bin = "basedpyright-langserver",    mason = "basedpyright" },
+  { config = "clangd",        bin = "clangd",                     mason = "clangd" },
+  { config = "rust_analyzer", bin = "rust-analyzer",              mason = "rust-analyzer" },
+  { config = "gopls",         bin = "gopls",                      mason = "gopls" },
+}
+
+-- Auto-install missing servers via Mason only when not present in system PATH
+local mr = require("mason-registry")
+mr.refresh(function()
+  for _, srv in ipairs(servers) do
+    if vim.fn.executable(srv.bin) == 0 then
+      local ok, pkg = pcall(mr.get_package, srv.mason)
+      if ok and not pkg:is_installed() and not pkg:is_installing() then
+        pkg:install()
+      end
+    end
+  end
+end)
+
+-- ============================================================================
+-- 2. Global / Wildcard Server Configuration
 -- ============================================================================
 vim.lsp.config("*", {
   root_markers = { ".git" },
 })
 
 -- ============================================================================
--- 2. Per-Server Overrides
+-- 3. Per-Server Overrides
 -- ============================================================================
 -- Configure Lua Language Server to recognize the `vim` global and Neovim runtime
 vim.lsp.config("lua_ls", {
@@ -68,22 +103,16 @@ vim.lsp.config("lua_ls", {
 })
 
 -- ============================================================================
--- 3. Enable Language Servers
+-- 4. Enable Language Servers
 -- ============================================================================
--- Servers listed below will automatically attach when their executable is
--- installed in PATH and a matching filetype / workspace root is opened.
-vim.lsp.enable({
-  "lua_ls",        -- Lua (lua-language-server)
-  "ts_ls",         -- TypeScript / JavaScript (typescript-language-server)
-  "pyright",       -- Python (pyright)
-  "basedpyright",  -- Python alternative (basedpyright)
-  "clangd",        -- C / C++ (clangd)
-  "rust_analyzer", -- Rust (rust-analyzer)
-  "gopls",         -- Go (gopls)
-})
+local enabled_configs = {}
+for _, srv in ipairs(servers) do
+  table.insert(enabled_configs, srv.config)
+end
+vim.lsp.enable(enabled_configs)
 
 -- ============================================================================
--- 4. Native LSP Features on Attach (:h LspAttach)
+-- 5. Native LSP Features on Attach (:h LspAttach)
 -- ============================================================================
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("native_lsp_attach", { clear = true }),

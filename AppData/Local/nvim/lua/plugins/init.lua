@@ -14,4 +14,6 @@
 vim.pack.add({
   -- Official collection of LSP server configurations (provides runtime lsp/*.lua)
   "https://github.com/neovim/nvim-lspconfig",
+  -- Portable package manager for LSP servers, DAP servers, linters, and formatters
+  "https://github.com/mason-org/mason.nvim",
 })
