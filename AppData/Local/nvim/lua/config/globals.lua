@@ -24,8 +24,8 @@ g.maplocalleader = " "
 -- [Disable Netrw Completely]
 -- Uncomment the two lines below if you use an external file explorer plugin
 -- (e.g., neo-tree.nvim, nvim-tree.lua, oil.nvim) to prevent netrw from loading:
--- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
+g.loaded_netrw = 0
+g.loaded_netrwPlugin = 0
 
 -- 'g:netrw_altfile' - 0: normal, 1: keep alternate file (#) as the last edited file (not netrw buffer)
 -- g.netrw_altfile = 0
