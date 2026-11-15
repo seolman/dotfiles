@@ -773,11 +773,9 @@ opt.shiftwidth = 2
 -- 'signcolumn' ('scl') - when and how to display the sign column
 opt.signcolumn = "yes:1"
 
--- TODO
 -- 'smartcase' ('scs') - no ignore case when pattern has uppercase
--- opt.smartcase = false
+opt.smartcase = true
 
--- TODO
 -- 'smartindent' ('si') - smart autoindenting for C programs
 -- opt.smartindent = false
 
