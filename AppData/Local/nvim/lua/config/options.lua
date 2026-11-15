@@ -263,9 +263,8 @@ local opt = vim.opt
 -- 'eventignorewin' ('eiw') - autocommand events that are ignored in a window
 -- opt.eventignorewin = ""
 
--- TODO
 -- 'expandtab' ('et') - use spaces when <Tab> is inserted
--- opt.expandtab = false
+opt.expandtab = true
 
 -- 'exrc' ('ex') - read init files in the current directory
 -- opt.exrc = false
@@ -743,11 +742,10 @@ opt.number = true
 -- opt.shellxquote = "("
 
 -- 'shiftround' ('sr') - round indent to multiple of shiftwidth
--- opt.shiftround = false
+opt.shiftround = true
 
--- TODO
 -- 'shiftwidth' ('sw') - number of spaces to use for (auto)indent step
--- opt.shiftwidth = 8
+opt.shiftwidth = 2
 
 -- 'shortmess' ('shm') - list of flags, reduce length of messages
 -- opt.shortmess = "ltToOCF"
@@ -791,16 +789,14 @@ opt.signcolumn = "yes"
 -- 'smartindent' ('si') - smart autoindenting for C programs
 -- opt.smartindent = false
 
--- TODO
 -- 'smarttab' ('sta') - <Tab> in leading whitespace indents by 'shiftwidth'
 -- opt.smarttab = true
 
 -- 'smoothscroll' ('sms') - scroll by screen lines when 'wrap' is set
 -- opt.smoothscroll = false
 
--- TODO
 -- 'softtabstop' ('sts') - number of columns between two soft tab stops
--- opt.softtabstop = 0
+opt.softtabstop = 2
 
 -- 'spell' - enable spell checking
 -- opt.spell = false
@@ -867,9 +863,8 @@ opt.swapfile = false
 -- 'tabpagemax' ('tpm') - maximum number of tabpages for |-p| and "tab all"
 -- opt.tabpagemax = 50
 
--- TODO
 -- 'tabstop' ('ts') - number of columns between two tab stops
--- opt.tabstop = 8
+opt.tabstop = 2
 
 -- 'tagbsearch' ('tbs') - use binary searching in tags files
 -- opt.tagbsearch = true
