@@ -17,27 +17,30 @@
 ├── README.KO.md                # 한국어 문서
 ├── AppData/
 │   └── Local/
-│       └── nvim/               # Windows Neovim 설정 (%LOCALAPPDATA%\nvim)
-│           ├── init.lua
-│           ├── nvim-pack-lock.json
-│           └── lua/
-│               ├── config/
-│               │   ├── init.lua
-│               │   ├── globals.lua
-│               │   ├── options.lua
-│               │   └── lsp.lua
-│               └── plugins/
-│                   └── init.lua
+│       └── symlink_nvim.tmpl   # Windows 심볼릭 링크 (~/AppData/Local/nvim -> ~/.config/nvim)
 └── dot_config/
+    ├── nvim/                   # Neovim 설정 (~/.config/nvim)
+    │   ├── init.lua
+    │   ├── nvim-pack-lock.json
+    │   └── lua/
+    │       ├── config/
+    │       │   ├── init.lua
+    │       │   ├── globals.lua
+    │       │   ├── options.lua
+    │       │   ├── keymaps.lua
+    │       │   ├── ui.lua
+    │       │   └── lsp.lua
+    │       └── plugins/
+    │           └── init.lua
     └── tmux/
         └── tmux.conf           # Linux tmux 설정 (~/.config/tmux/tmux.conf)
 ```
 
 ---
 
-## Neovim (Windows — 순정 `vim.pack` & 하이브리드 Native LSP)
+## Neovim (Linux & Windows — 순정 `vim.pack` & 하이브리드 Native LSP)
 
-**Neovim 0.13**의 내장 패키지 매니저(`vim.pack`)로 [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)와 [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)을 설치하고, 순정 `vim.lsp.config` / `vim.lsp.enable` API로 구성했습니다.
+**Neovim 0.13**(`~/.config/nvim`, Windows에서는 `%LOCALAPPDATA%\nvim` 심볼릭 링크)의 내장 패키지 매니저(`vim.pack`)로 [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig)와 [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim)을 설치하고, 순정 `vim.lsp.config` / `vim.lsp.enable` API로 구성했습니다.
 
 - **시스템 우선 하이브리드 Mason (`PATH = "append"`)**: 시스템(`rustup`, `winget`, `brew`, `apt` 등)에 이미 설치된 언어 서버가 있으면 시스템 버전을 1순위로 사용하고, 시스템에 없는 서버만 Mason이 자동으로 백그라운드 설치합니다 (`:Mason`으로 상태 확인 가능).
 - **기본 활성화된 언어 서버**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`, `marksman`, `markdown_oxide`
@@ -99,7 +102,7 @@ chezmoi init --apply https://github.com/seolman/dotfiles.git
 
 ### 2. 원격 저장소(GitHub)의 최신 변경 사항 받아서 로컬에 적용하기
 
-다른 환경이나 원격에서 수정된 내용을 로컬(`~/.local/share/chezmoi`)로 `git pull` 받고 실제 홈 디렉토리(`~/AppData/Local/nvim` 등)에 바로 반영합니다:
+다른 환경이나 원격에서 수정된 내용을 로컬(`~/.local/share/chezmoi`)로 `git pull` 받고 실제 홈 디렉토리(`~/.config/nvim` 등)에 바로 반영합니다:
 
 ```powershell
 # 원격 변경 사항 미리 확인
@@ -110,9 +113,9 @@ chezmoi diff
 chezmoi update
 ```
 
-### 3. 로컬 설정 파일(`~/AppData/Local/nvim` 등)을 직접 수정했을 때 반영하기
+### 3. 로컬 설정 파일(`~/.config/nvim` 등)을 직접 수정했을 때 반영하기
 
-`~/.local/share/chezmoi`가 아니라 실제 적용 경로(예: `~/AppData/Local/nvim`)에서 직접 파일을 수정하거나 새 파일을 추가했을 때는 **`re-add`** 또는 **`add`**로 chezmoi 소스 디렉토리에 가져옵니다.
+`~/.local/share/chezmoi`가 아니라 실제 적용 경로(예: `~/.config/nvim`)에서 직접 파일을 수정하거나 새 파일을 추가했을 때는 **`re-add`** 또는 **`add`**로 chezmoi 소스 디렉토리에 가져옵니다.
 
 ```powershell
 # [확인] 로컬 파일과 chezmoi 소스 간의 차이점 확인
@@ -123,12 +126,12 @@ chezmoi diff
 chezmoi re-add
 
 # [방법 B] 새로 만든 파일이나 특정 파일/폴더를 chezmoi 관리 대상에 추가(또는 갱신)하기
-chezmoi add ~/AppData/Local/nvim
+chezmoi add ~/.config/nvim
 # 또는 특정 파일만 지정:
-# chezmoi add ~/AppData/Local/nvim/lua/config/options.lua
+# chezmoi add ~/.config/nvim/lua/config/options.lua
 ```
 
-> **참고**: `chezmoi edit <파일경로>` (예: `chezmoi edit ~/AppData/Local/nvim/init.lua`)를 사용하면 소스 디렉토리의 파일을 바로 열어서 수정할 수 있고, 그 후 `chezmoi apply`로 로컬에 반영할 수도 있습니다.
+> **참고**: `chezmoi edit <파일경로>` (예: `chezmoi edit ~/.config/nvim/init.lua`)를 사용하면 소스 디렉토리의 파일을 바로 열어서 수정할 수 있고, 그 후 `chezmoi apply`로 로컬에 반영할 수도 있습니다.
 
 ### 4. Git 커밋 및 푸시하기 (`chezmoi git`)
 

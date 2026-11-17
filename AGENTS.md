@@ -12,8 +12,9 @@ The repository root is the chezmoi source directory (no `.chezmoiroot`).
 - `.chezmoi.toml.tmpl` — OS/arch detection and Windows `pwsh` shell config for `chezmoi cd`
 - `.chezmoiignore` — Excludes repo-only files and OS-specific paths from target deployment
 - `.gitattributes` — Enforces `LF` by default and `CRLF` for `.bat`, `.cmd`, `.ps1`
-- `AppData/Local/nvim/` — Windows Neovim config (`%LOCALAPPDATA%\nvim`)
-- `dot_config/` — Cross-platform XDG configs deploying to `~/.config/` (shared across Windows, Linux, macOS)
+- `dot_config/nvim/` — Neovim config source (`~/.config/nvim` across OSes, symlinked from `%LOCALAPPDATA%\nvim` on Windows)
+- `AppData/Local/symlink_nvim.tmpl` — Windows symlink (`~/AppData/Local/nvim` -> `~/.config/nvim`)
+- `dot_config/tmux/` — Linux tmux config (`~/.config/tmux/tmux.conf`)
 
 ## Commands
 
@@ -39,18 +40,19 @@ tmux -L test -f dot_config/tmux/tmux.conf new-session -d \; kill-server
 
 ### Chezmoi & Cross-Platform
 - Add any new repository-only files (docs, license, agent configs) to `.chezmoiignore`.
-- Do not blanket-ignore `.config/**` on Windows; many CLI/TUI tools read `~/.config` on Windows. Ignore only specific subpaths when an app differs by OS.
-- When extending Neovim to Linux/macOS (`~/.config/nvim`), share Lua modules via chezmoi templates/scripts or symlinks instead of duplicating files.
+- Do not blanket-ignore `.config/**` on Windows; many CLI/TUI tools (including Neovim via `AppData/Local/symlink_nvim.tmpl`) use `~/.config` on Windows. Ignore only specific subpaths when an app differs by OS.
+- Neovim configuration lives under `dot_config/nvim/` (`~/.config/nvim`) and is shared on Windows via `AppData/Local/symlink_nvim.tmpl` (`~/AppData/Local/nvim` -> `~/.config/nvim`) instead of duplicating files.
 
-### Neovim (`AppData/Local/nvim/`)
+### Neovim (`dot_config/nvim/`)
 - **Entry point**: `init.lua` calls `require("config")`.
 - **Load order** (`lua/config/init.lua`):
   1. `config.globals` **must** load first so `vim.g.mapleader` and `vim.g.maplocalleader` are set before any keymaps or plugins.
   2. `config.options` loads next.
-  3. `plugins` loads next via native `vim.pack.add()`.
-  4. `config.lsp` loads after `plugins` so `nvim-lspconfig`'s `lsp/*.lua` definitions are on the runtimepath before `vim.lsp.config()` / `vim.lsp.enable()`.
+  3. `config.keymaps` and `config.ui` load next.
+  4. `plugins` loads next via native `vim.pack.add()`.
+  5. `config.lsp` loads after `plugins` so `nvim-lspconfig`'s `lsp/*.lua` definitions are on the runtimepath before `vim.lsp.config()` / `vim.lsp.enable()`.
 - **`lua/config/globals.lua`**: Uses `vim.g` (`local g = vim.g`) for leader keys and `netrw` variables (`g:netrw_*`, `g:loaded_netrw*`). Keep commented-out `netrw` reference entries intact; uncomment and edit in place.
-- **`lua/config/options.lua`**: Uses `vim.opt` (`local opt = vim.opt`) and lists all `:h option-list` (`quickref.txt`) options in **alphabetical order** with Windows defaults commented out. Do not remove or reorder commented-out reference entries; uncomment and edit in place.
+- **`lua/config/options.lua`**: Uses `vim.opt` (`local opt = vim.opt`) and lists all `:h option-list` (`quickref.txt`) options in **alphabetical order** with defaults commented out. Do not remove or reorder commented-out reference entries; uncomment and edit in place.
 - **`lua/plugins/init.lua`**: Uses Neovim 0.12+ native package manager `vim.pack.add()` (no external plugin manager), with `nvim-pack-lock.json` tracked in Git.
 - **`lua/config/lsp.lua`**: Uses `mason.nvim` with `PATH = "append"` (system-first hybrid: prefers system binaries on `PATH` and auto-installs missing servers via Mason without extra bridge plugins), native `vim.lsp.config()` and `vim.lsp.enable()` (do not use legacy `require("lspconfig").<server>.setup()`), native completion (`vim.lsp.completion.enable`), native inlay hints (`vim.lsp.inlay_hint.enable`), and Neovim built-in LSP keymaps (`grn`, `gra`, `grr`, `gri`, `grt`, `grx`, `gO`, `K`, `<C-]>`, `<C-s>`, `]d`/`[d`).
 
@@ -62,6 +64,6 @@ tmux -L test -f dot_config/tmux/tmux.conf new-session -d \; kill-server
 
 ## Git & Security
 
-- **Sync first**: The user often edits deployed files directly under `~/AppData/Local/nvim` and pushes via `chezmoi re-add` + `chezmoi git`. Always `git fetch` / `git pull --rebase` before committing or pushing.
+- **Sync first**: The user often edits deployed files directly under `~/.config/nvim` (or `~/AppData/Local/nvim`) and pushes via `chezmoi re-add` + `chezmoi git`. Always `git fetch` / `git pull --rebase` before committing or pushing.
 - **No secrets**: Never commit API keys, tokens, credentials, or machine-specific private paths. Use chezmoi templates (`.tmpl`) for OS- or host-specific differences.
 - **Commit style**: Use concise Conventional Commits (e.g., `feat(nvim): ...`, `fix: ...`, `docs: ...`, `chore: ...`).

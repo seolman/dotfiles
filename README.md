@@ -17,27 +17,30 @@ Cross-platform dotfiles managed with **chezmoi**, prioritizing **Windows** first
 ├── README.KO.md                # Documentation (Korean)
 ├── AppData/
 │   └── Local/
-│       └── nvim/               # Windows Neovim config (%LOCALAPPDATA%\nvim)
-│           ├── init.lua
-│           ├── nvim-pack-lock.json
-│           └── lua/
-│               ├── config/
-│               │   ├── init.lua
-│               │   ├── globals.lua
-│               │   ├── options.lua
-│               │   └── lsp.lua
-│               └── plugins/
-│                   └── init.lua
+│       └── symlink_nvim.tmpl   # Windows symlink (~/AppData/Local/nvim -> ~/.config/nvim)
 └── dot_config/
+    ├── nvim/                   # Neovim config (~/.config/nvim)
+    │   ├── init.lua
+    │   ├── nvim-pack-lock.json
+    │   └── lua/
+    │       ├── config/
+    │       │   ├── init.lua
+    │       │   ├── globals.lua
+    │       │   ├── options.lua
+    │       │   ├── keymaps.lua
+    │       │   ├── ui.lua
+    │       │   └── lsp.lua
+    │       └── plugins/
+    │           └── init.lua
     └── tmux/
         └── tmux.conf           # Linux tmux config (~/.config/tmux/tmux.conf)
 ```
 
 ---
 
-## Neovim (Windows — Native `vim.pack` & Hybrid LSP)
+## Neovim (Linux & Windows — Native `vim.pack` & Hybrid LSP)
 
-Configured for **Neovim 0.13** using the built-in package manager (`vim.pack`) with [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig), [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim), and native `vim.lsp.config` / `vim.lsp.enable` APIs.
+Configured for **Neovim 0.13** (`~/.config/nvim`, symlinked from `%LOCALAPPDATA%\nvim` on Windows) using the built-in package manager (`vim.pack`) with [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig), [`mason-org/mason.nvim`](https://github.com/mason-org/mason.nvim), and native `vim.lsp.config` / `vim.lsp.enable` APIs.
 
 - **System-first Hybrid Mason (`PATH = "append"`)**: Prefers language servers already installed on the system (e.g., via `rustup`, `winget`, `brew`, `apt`) and automatically installs missing servers via Mason (`:Mason` to inspect).
 - **Enabled language servers**: `lua_ls`, `ts_ls`, `basedpyright`, `clangd`, `rust_analyzer`, `gopls`, `marksman`, `markdown_oxide`
@@ -99,7 +102,7 @@ chezmoi init --apply https://github.com/seolman/dotfiles.git
 
 ### 2. Pull & Apply Remote Updates
 
-Fetch changes from GitHub into `~/.local/share/chezmoi` and apply them to your home directory (e.g., `~/AppData/Local/nvim`):
+Fetch changes from GitHub into `~/.local/share/chezmoi` and apply them to your home directory (e.g., `~/.config/nvim`):
 
 ```powershell
 # Preview remote changes
@@ -112,7 +115,7 @@ chezmoi update
 
 ### 3. Sync Local Edits Back to Chezmoi
 
-When you edit deployed files directly (e.g., inside `~/AppData/Local/nvim`) instead of `~/.local/share/chezmoi`, sync them back using `re-add` or `add`:
+When you edit deployed files directly (e.g., inside `~/.config/nvim`) instead of `~/.local/share/chezmoi`, sync them back using `re-add` or `add`:
 
 ```powershell
 # Check differences between local files and chezmoi source
@@ -123,12 +126,12 @@ chezmoi diff
 chezmoi re-add
 
 # [Option B] Add newly created files or specific paths to chezmoi
-chezmoi add ~/AppData/Local/nvim
+chezmoi add ~/.config/nvim
 # Or a specific file:
-# chezmoi add ~/AppData/Local/nvim/lua/config/options.lua
+# chezmoi add ~/.config/nvim/lua/config/options.lua
 ```
 
-> **Tip**: You can also edit source files directly with `chezmoi edit ~/AppData/Local/nvim/init.lua` and then run `chezmoi apply`.
+> **Tip**: You can also edit source files directly with `chezmoi edit ~/.config/nvim/init.lua` and then run `chezmoi apply`.
 
 ### 4. Commit & Push Changes (`chezmoi git`)
 
