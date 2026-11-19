@@ -4,9 +4,13 @@ README.KO.md
 LICENSE.md
 AGENTS.md
 
-{{- if ne .chezmoi.os "windows" }}
-# Ignore Windows-only directories on Linux and macOS
+{{- if eq .chezmoi.os "windows" }}
+# Ignore Unix package script on Windows
+.chezmoiscripts/install-packages.sh
+{{- else }}
+# Ignore Windows-only directories and scripts on Linux and macOS
 AppData/**
+.chezmoiscripts/install-packages.ps1
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}

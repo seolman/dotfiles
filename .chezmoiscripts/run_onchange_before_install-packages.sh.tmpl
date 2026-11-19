@@ -1,0 +1,66 @@
+{{- if ne .chezmoi.os "windows" -}}
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- $osid := .chezmoi.os }}
+{{- if hasKey .chezmoi.osRelease "id" }}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id }}
+{{- end }}
+
+run_privileged() {
+  if [ "$(id -u)" -eq 0 ]; then
+    "$@"
+  elif command -v sudo >/dev/null 2>&1; then
+    sudo "$@"
+  else
+    echo "Error: root privileges or sudo are required to install packages." >&2
+    exit 1
+  fi
+}
+
+{{- if eq $osid "linux-arch" }}
+{{-   if .packages.arch.pacman }}
+run_privileged pacman -S --needed --noconfirm {{ .packages.arch.pacman | join " " }}
+{{-   end }}
+{{-   if .packages.arch.aur }}
+if command -v paru >/dev/null 2>&1; then
+  paru -S --needed --noconfirm {{ .packages.arch.aur | join " " }}
+elif command -v yay >/dev/null 2>&1; then
+  yay -S --needed --noconfirm {{ .packages.arch.aur | join " " }}
+else
+  echo "Warning: neither paru nor yay found; skipping AUR packages." >&2
+fi
+{{-   end }}
+
+{{- else if eq $osid "linux-debian" }}
+{{-   if .packages.debian.apt }}
+run_privileged apt-get update
+run_privileged apt-get install -y {{ .packages.debian.apt | join " " }}
+{{-   end }}
+
+{{- else if eq $osid "linux-rocky" }}
+{{-   if .packages.rocky.dnf }}
+run_privileged dnf install -y epel-release
+run_privileged dnf install -y {{ .packages.rocky.dnf | join " " }}
+{{-   end }}
+
+{{- else if eq $osid "darwin" }}
+{{-   if or .packages.darwin.brews .packages.darwin.casks }}
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Warning: Homebrew is not installed; skipping macOS packages." >&2
+  exit 0
+fi
+brew bundle --file=/dev/stdin <<'EOF'
+{{-     range .packages.darwin.brews }}
+brew {{ . | quote }}
+{{-     end }}
+{{-     range .packages.darwin.casks }}
+cask {{ . | quote }}
+{{-     end }}
+EOF
+{{-   end }}
+
+{{- else }}
+echo "Info: no package installation rules configured for '{{ $osid }}'; skipping."
+{{- end }}
+{{- end -}}

@@ -8,8 +8,13 @@
 
 ```text
 .
-├── .chezmoi.toml.tmpl          # chezmoi 설정 템플릿 (OS 감지 및 기본 셸 설정)
+├── .chezmoi.toml.tmpl          # chezmoi 설정 템플릿 (OS/배포판 감지 및 Windows 기본 셸)
+├── .chezmoidata/
+│   └── packages.yaml           # OS/배포판별 선언적 패키지 목록 (Arch, Debian, Rocky, macOS, Windows)
 ├── .chezmoiignore              # OS별 제외 대상 설정 (README, OS 전용 경로 등)
+├── .chezmoiscripts/
+│   ├── run_onchange_before_install-packages.sh.tmpl   # Linux (Arch/Debian/Rocky) 및 macOS 패키지 설치
+│   └── run_onchange_before_install-packages.ps1.tmpl  # Windows (winget) 패키지 설치
 ├── .gitattributes              # 크로스 플랫폼 줄바꿈(LF/CRLF) 설정
 ├── AGENTS.md                   # AI 코딩 에이전트 작업 규칙
 ├── LICENSE.md                  # MIT 라이선스
@@ -89,6 +94,22 @@
 | `Prefix` + `M-h` / `M-l` | 창 위치 좌/우 이동 |
 | `Prefix` + `[` 또는 `Esc` | Vi 복사 모드 진입 (`v` 문자, `V` 줄, `C-v` 블록, `y` 복사) |
 | `Prefix` + `r` | `~/.config/tmux/tmux.conf` 설정 다시 불러오기 |
+
+---
+
+## 패키지 관리 (크로스 플랫폼)
+
+패키지 목록은 `.chezmoidata/packages.yaml`에 선언적으로 관리되며, `.chezmoiscripts/`의 `run_onchange_before_` 스크립트가 dotfiles 적용 전에 자동으로 설치합니다. 각 스크립트는 현재 OS/배포판에 해당하는 패키지 목록만 렌더링하므로, 해당 플랫폼의 목록이 변경될 때만 재실행됩니다.
+
+| 플랫폼 | 감지된 `osid` | 패키지 매니저 |
+| :--- | :--- | :--- |
+| **Arch Linux** | `linux-arch` | `pacman` (+ AUR용 `paru` / `yay`) |
+| **Debian** | `linux-debian` | `apt-get` |
+| **Rocky Linux** | `linux-rocky` | `dnf` (`epel-release` 자동 설치) |
+| **macOS** | `darwin` | `brew bundle` (`brews` 및 `casks`) |
+| **Windows** | `windows` | `winget` |
+
+> **팁**: 패키지 설치 스크립트를 건너뛰고 설정 파일만 적용하려면 `chezmoi apply --exclude=scripts`를 실행하세요.
 
 ---
 

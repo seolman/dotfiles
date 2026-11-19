@@ -9,9 +9,11 @@ The repository root is the chezmoi source directory (no `.chezmoiroot`).
 
 ## Repository Structure
 
-- `.chezmoi.toml.tmpl` — OS/arch detection and Windows `pwsh` shell config for `chezmoi cd`
-- `.chezmoiignore` — Excludes repo-only files and OS-specific paths from target deployment
-- `.gitattributes` — Enforces `LF` by default and `CRLF` for `.bat`, `.cmd`, `.ps1`
+- `.chezmoi.toml.tmpl` — OS/distro (`osid`) and arch detection, plus Windows `pwsh` shell config for `chezmoi cd`
+- `.chezmoidata/packages.yaml` — Declarative cross-platform package definitions (Arch, Debian, Rocky, macOS, Windows)
+- `.chezmoiignore` — Excludes repo-only files and OS-specific paths/scripts from target deployment
+- `.chezmoiscripts/` — `run_onchange_before_install-packages.{sh,ps1}.tmpl` scripts triggered when the current OS/distro's package list changes
+- `.gitattributes` — Enforces `LF` by default and `CRLF` for `.bat`, `.cmd`, `.ps1`, `.ps1.tmpl`
 - `dot_config/nvim/` — Neovim config source (`~/.config/nvim` across OSes, symlinked from `%LOCALAPPDATA%\nvim` on Windows)
 - `AppData/Local/symlink_nvim.tmpl` — Windows symlink (`~/AppData/Local/nvim` -> `~/.config/nvim`)
 - `dot_config/tmux/` — Linux tmux config (`~/.config/tmux/tmux.conf`)

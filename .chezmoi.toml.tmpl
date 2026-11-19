@@ -1,9 +1,15 @@
 # Chezmoi Configuration Template
 # Evaluates during `chezmoi init` across Windows, Linux, and macOS.
 
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end }}
+
 [data]
     os = {{ .chezmoi.os | quote }}
     arch = {{ .chezmoi.arch | quote }}
+    osid = {{ $osid | quote }}
 
 {{- if eq .chezmoi.os "windows" }}
 [cd]

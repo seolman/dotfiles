@@ -8,8 +8,13 @@ Cross-platform dotfiles managed with **chezmoi**, prioritizing **Windows** first
 
 ```text
 .
-├── .chezmoi.toml.tmpl          # chezmoi config template (OS detection & Windows shell)
+├── .chezmoi.toml.tmpl          # chezmoi config template (OS/distro detection & Windows shell)
+├── .chezmoidata/
+│   └── packages.yaml           # Declarative package lists (Arch, Debian, Rocky, macOS, Windows)
 ├── .chezmoiignore              # Excluded files and OS-specific paths
+├── .chezmoiscripts/
+│   ├── run_onchange_before_install-packages.sh.tmpl   # Linux (Arch/Debian/Rocky) & macOS installer
+│   └── run_onchange_before_install-packages.ps1.tmpl  # Windows (winget) installer
 ├── .gitattributes              # Cross-platform line endings (LF/CRLF)
 ├── AGENTS.md                   # Guidelines for AI coding agents
 ├── LICENSE.md                  # MIT License
@@ -89,6 +94,22 @@ Pure built-in tmux configuration with Vim motions, zero external plugins, TrueCo
 | `Prefix` + `M-h` / `M-l` | Swap window left / right |
 | `Prefix` + `[` or `Esc` | Enter Vi copy mode (`v` char, `V` line, `C-v` block, `y` yank) |
 | `Prefix` + `r` | Reload `~/.config/tmux/tmux.conf` |
+
+---
+
+## Package Management (Cross-Platform)
+
+Packages are declared in `.chezmoidata/packages.yaml` and automatically installed before dotfiles are applied via `run_onchange_before_` scripts in `.chezmoiscripts/`. Because each script renders only the current OS/distribution's package list, it re-runs only when that platform's entries change.
+
+| Platform | Detected `osid` | Package Manager |
+| :--- | :--- | :--- |
+| **Arch Linux** | `linux-arch` | `pacman` (+ `paru` / `yay` for AUR) |
+| **Debian** | `linux-debian` | `apt-get` |
+| **Rocky Linux** | `linux-rocky` | `dnf` (enables `epel-release` automatically) |
+| **macOS** | `darwin` | `brew bundle` (`brews` & `casks`) |
+| **Windows** | `windows` | `winget` |
+
+> **Tip**: Run `chezmoi apply --exclude=scripts` if you want to apply config files without running package installation scripts.
 
 ---
 

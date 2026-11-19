@@ -1,0 +1,56 @@
+# Cross-platform package definitions managed by chezmoi.
+# Changes to an OS/distro section trigger its corresponding
+# .chezmoiscripts/run_onchange_before_install-packages.* script.
+
+packages:
+  arch:
+    pacman:
+      - curl
+      - fd
+      - fzf
+      - git
+      - neovim
+      - ripgrep
+      - tmux
+      - unzip
+    aur: []
+
+  debian:
+    # Note: Debian's default apt repo often ships an older Neovim version.
+    # Install Neovim 0.12+/0.13 separately (e.g., official release tarball, AppImage, or mise).
+    apt:
+      - curl
+      - fd-find
+      - fzf
+      - git
+      - ripgrep
+      - tmux
+      - unzip
+
+  rocky:
+    # Note: EPEL (epel-release) is enabled automatically by the install script.
+    # Install Neovim 0.12+/0.13 separately if the distro package is too old.
+    dnf:
+      - curl
+      - fzf
+      - git
+      - ripgrep
+      - tmux
+      - unzip
+
+  darwin:
+    brews:
+      - fd
+      - fzf
+      - git
+      - neovim
+      - ripgrep
+    casks: []
+
+  windows:
+    winget:
+      - Git.Git
+      - Neovim.Neovim
+      - BurntSushi.ripgrep.MSVC
+      - sharkdp.fd
+      - junegunn.fzf

@@ -1,0 +1,24 @@
+{{- if eq .chezmoi.os "windows" -}}
+$ErrorActionPreference = "Stop"
+
+{{- if .packages.windows.winget }}
+if (-not (Get-Command winget -ErrorAction SilentlyContinue)) {
+    Write-Warning "winget is not installed; skipping Windows packages."
+    exit 0
+}
+
+$packages = @(
+{{- range .packages.windows.winget }}
+    {{ . | quote }}
+{{- end }}
+)
+
+foreach ($pkg in $packages) {
+    winget install --id $pkg --exact --accept-source-agreements --accept-package-agreements --silent
+    # 0: installed/upgraded, -1978335189 (0x8A15002B): already installed with no available upgrade
+    if ($LASTEXITCODE -ne 0 -and $LASTEXITCODE -ne -1978335189) {
+        throw "Failed to install winget package '$pkg' (exit code: $LASTEXITCODE)."
+    }
+}
+{{- end }}
+{{- end -}}
