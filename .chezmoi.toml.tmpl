@@ -6,6 +6,8 @@
 {{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
 {{- end }}
 
+sourceDir = {{ .chezmoi.sourceDir | quote }}
+
 [data]
     os = {{ .chezmoi.os | quote }}
     arch = {{ .chezmoi.arch | quote }}
