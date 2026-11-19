@@ -13,10 +13,45 @@ $packages = @(
 {{- end }}
 )
 
+# Query currently installed winget package IDs once to skip redundant checks
+$installed = [System.Collections.Generic.HashSet[string]]::new(
+    [System.StringComparer]::OrdinalIgnoreCase
+)
+$tempFile = [System.IO.Path]::GetTempFileName()
+try {
+    winget export -o $tempFile --accept-source-agreements | Out-Null
+    if ($LASTEXITCODE -eq 0 -and (Test-Path $tempFile)) {
+        $raw = Get-Content $tempFile -Raw -ErrorAction SilentlyContinue
+        if (-not [string]::IsNullOrWhiteSpace($raw)) {
+            $exportData = $raw | ConvertFrom-Json
+            foreach ($src in $exportData.Sources) {
+                foreach ($p in $src.Packages) {
+                    if ($p.PackageIdentifier) {
+                        [void]$installed.Add($p.PackageIdentifier)
+                    }
+                }
+            }
+        }
+    }
+}
+catch {
+    Write-Warning "Failed to inspect installed winget packages; falling back to full check."
+}
+finally {
+    Remove-Item $tempFile -Force -ErrorAction SilentlyContinue
+}
+
+# 0: installed, 3010: reboot required, -1978335189 (0x8A15002B): no upgrade, -1978335135 (0x8A150061): already installed
+$allowedExitCodes = @(0, 3010, -1978335189, -1978335135)
+
 foreach ($pkg in $packages) {
-    winget install --id $pkg --exact --accept-source-agreements --accept-package-agreements --silent
-    # 0: installed/upgraded, -1978335189 (0x8A15002B): already installed with no available upgrade
-    if ($LASTEXITCODE -ne 0 -and $LASTEXITCODE -ne -1978335189) {
+    if ($installed.Contains($pkg)) {
+        continue
+    }
+
+    Write-Host "Installing $pkg..."
+    winget install --id $pkg --exact --no-upgrade --accept-source-agreements --accept-package-agreements --silent
+    if ($LASTEXITCODE -notin $allowedExitCodes) {
         throw "Failed to install winget package '$pkg' (exit code: $LASTEXITCODE)."
     }
 }

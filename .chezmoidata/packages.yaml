@@ -68,7 +68,6 @@ packages:
       - LocalSend.LocalSend
       - M2Team.NanaZip
       - Microsoft.Coreutils
-      - Microsoft.Git
       - Microsoft.OneDrive
       - Microsoft.OpenSSH.Preview
       - Microsoft.PowerShell.Preview
