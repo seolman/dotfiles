@@ -55,6 +55,7 @@ packages:
       # - EpicGames.EpicOnlineServices
       - Famatech.AdvancedIPScanner
       # - GOG.Galaxy
+      - Git.Git
       - GitHub.cli
       - GoLang.Go
       - Google.Antigravity
