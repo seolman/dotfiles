@@ -49,8 +49,56 @@ packages:
 
   windows:
     winget:
-      - Git.Git
-      - Neovim.Neovim
       - BurntSushi.ripgrep.MSVC
-      - sharkdp.fd
+      # - Discord.Discord
+      # - EpicGames.EpicGamesLauncher
+      # - EpicGames.EpicOnlineServices
+      - Famatech.AdvancedIPScanner
+      # - GOG.Galaxy
+      - GitHub.cli
+      - GoLang.Go
+      - Google.Antigravity
+      - Google.Chrome.Dev
+      - Google.GoogleDrive
+      - Hashicorp.Terraform
+      - Insecure.Nmap
+      - Kakao.KakaoTalk
+      - Kubernetes.kubectl
+      - LocalSend.LocalSend
+      - M2Team.NanaZip
+      - Microsoft.Coreutils
+      - Microsoft.Git
+      - Microsoft.OneDrive
+      - Microsoft.OpenSSH.Preview
+      - Microsoft.PowerShell.Preview
+      - Microsoft.PowerToys
+      - Microsoft.Sysinternals.BGInfo
+      - Microsoft.VisualStudioCode.Insiders
+      - Microsoft.WindowsApp
+      - Microsoft.WindowsTerminal.Preview
+      - MikeFarah.yq
+      - Mobatek.MobaXterm
+      - NAVER.MYBOX
+      - Neovim.Neovim.Nightly
+      # - OBSProject.OBSStudio
+      - Obsidian.Obsidian
+      - OpenJS.NodeJS.LTS
+      - PuTTY.PuTTY
+      - Python.Launcher
+      - Python.Python.3.14
+      - Rclone.Rclone
+      # - Starship.Starship
+      - Tailscale.Tailscale
+      # - Valve.Steam
+      - WinSCP.WinSCP
+      - WiresharkFoundation.Wireshark
+      - ajeetdsouza.zoxide
+      # - cjpais.Handy
+      - jqlang.jq
       - junegunn.fzf
+      - marha.VcXsrv
+      - mpv-player.mpv-CI.MSVC
+      - sharkdp.bat
+      - sharkdp.fd
+      - yt-dlp.FFmpeg
+      - yt-dlp.yt-dlp
